@@ -38,9 +38,8 @@
     become: yes
     apt:
       pkg:
-      - rundeckpro-enterprise
+      - rundeck
     
-  
   - name: updating the hostname in configuration
     become: yes
     template:  
