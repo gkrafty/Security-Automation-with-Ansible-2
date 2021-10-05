@@ -1,7 +1,6 @@
 - name: installing jenkins in ubuntu 16.04
   hosts: jenkins
-  remote_user: ubuntu
-  gather_facts: False
+  gather_facts: true
   become: yes
   
   tasks:
