@@ -9,6 +9,7 @@
     raw: sudo test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python2-minimal)
 
   - name: install curl and git
+    become: yes
     apt:
       pkg:
       - default-jre
