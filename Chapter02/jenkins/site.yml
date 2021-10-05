@@ -20,18 +20,15 @@
 
   - name: adding jenkins gpg key
     become: yes
-    apt_key:
-      url: https://pkg.jenkins.io/debian/jenkins-ci.org.key
-      state: present
+    raw: wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 
-#  - name: jeknins repository to system
-#    become: yes
-#    apt_repository:
-#      repo: 'http://pkg.jenkins.io/debian-stable binary/'
-#      state: present
   - name: jeknins repository to system
     become: yes
     raw: sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+  - name: apt update to pull in jenkins package
+    become: yes
+    raw: sudo update
 
   - name: installing jenkins
     become: yes
