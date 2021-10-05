@@ -18,11 +18,29 @@
       - curl
       state: present
 
-  - name: downloading and installing rundeck deb package
+  - name: import rundeck keys
+    become: yes
+    raw: curl -L https://packages.rundeck.com/pagerduty/rundeckpro/gpgkey | sudo apt-key add -
+
+  - name: add packages to source.list
+    become: yes
+    raw: sudo sh -c 'echo deb https://packages.rundeck.com/pagerduty/rundeckpro/any/ any main > /etc/apt/sources.list.d/rundeck.list'
+
+  - name: add more packages to source.list
+    become: yes
+    raw: sudo sh -c 'echo deb-src https://packages.rundeck.com/pagerduty/rundeckpro/any/ any main > /etc/apt/sources.list.d/rundeck.list'
+  
+  - name: apt update to pull in rundeck package
+    become: yes
+    raw: sudo apt update
+    
+  - name: install rundeck
     become: yes
     apt:
-      deb: "http://dl.bintray.com/rundeck/rundeck-deb/rundeck-2.8.4-1-GA.deb"
-
+      pkg:
+      - rundeckpro-enterprise
+    
+  
   - name: updating the hostname in configuration
     become: yes
     template:  
