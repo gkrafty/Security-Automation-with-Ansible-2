@@ -28,7 +28,7 @@
 
   - name: apt update to pull in jenkins package
     become: yes
-    raw: sudo update
+    raw: sudo apt update
 
   - name: installing jenkins
     become: yes
