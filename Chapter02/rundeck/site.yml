@@ -1,6 +1,6 @@
 - name: installing rundeck on ubuntu 16.04
   hosts: rundeck
-  gatherfacts: true
+  gather_facts: true
   become: yes
 
   tasks:
