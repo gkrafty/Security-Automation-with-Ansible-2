@@ -1,19 +1,21 @@
 - name: installing rundeck on ubuntu 16.04
-  hosts: "192.168.1.7"
-  remote_user: ubuntu
   gatherfacts: False
   become: yes
 
   tasks:
     - name: installing python2 minimal
-      raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+      become: yes
+      raw: sudo test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python2-minimal)
 
-    - name: java and curl installation
-      apt: name={{ item }} state=present update_cache=yes
-
-      with_items:
+    - name: install default-jre vim git curl
+      become: yes
+      apt:
+        pkg:
+        - default-jre
+        - vim
+        - git
         - curl
-        - openjdk-8-jdk
+        state: present
 
     - name: downloading and installing rundeck deb package
       apt:
