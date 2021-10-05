@@ -3,30 +3,33 @@
   become: yes
 
   tasks:
-    - name: installing python2 minimal
-      become: yes
-      raw: sudo test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python2-minimal)
+  - name: installing python2 minimal
+    become: yes
+    raw: sudo test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python2-minimal)
 
-    - name: install default-jre vim git curl
-      become: yes
-      apt:
-        pkg:
-        - default-jre
-        - vim
-        - git
-        - curl
-        state: present
+  - name: install default-jre vim git curl
+    become: yes
+    apt:
+      pkg:
+      - default-jre
+      - vim
+      - git
+      - curl
+      state: present
 
-    - name: downloading and installing rundeck deb package
-      apt:
-        deb: "http://dl.bintray.com/rundeck/rundeck-deb/rundeck-2.8.4-1-GA.deb"
+  - name: downloading and installing rundeck deb package
+    become: yes
+    apt:
+      deb: "http://dl.bintray.com/rundeck/rundeck-deb/rundeck-2.8.4-1-GA.deb"
 
-    - name: updating the hostname in configuration
-      template:  
-        src: rundeck-config.properties.j2
-        dest: /etc/rundeck/rundeck-config.properties
+  - name: updating the hostname in configuration
+    become: yes
+    template:  
+      src: rundeck-config.properties.j2
+      dest: /etc/rundeck/rundeck-config.properties
         
-    - name: add to startup and start rundeck
-      service:
-        name: rundeckd
-        state: started
+  - name: add to startup and start rundeck
+    become: yes
+    service:
+      name: rundeckd
+      state: started
