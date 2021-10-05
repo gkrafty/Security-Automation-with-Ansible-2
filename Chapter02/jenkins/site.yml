@@ -12,10 +12,10 @@
 #    become: yes
     apt:
       pkg:
-#      - default-jre
+      - default-jre
       - vim
-#      - git
-#      - curl
+      - git
+      - curl
       state: present
 
   - name: adding jenkins gpg key
