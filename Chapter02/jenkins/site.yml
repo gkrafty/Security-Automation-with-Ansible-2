@@ -5,30 +5,36 @@
   
   tasks:
   - name: install python 2
+    become: yes
     raw: sudo test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python2-minimal)
 
   - name: install curl and git
+    become: yes
     apt: 
       pkg: ['default-jre','vim','git','curl']
       state: present
 
   - name: adding jenkins gpg key
+    become: yes
     apt_key:
       url: https://pkg.jenkins.io/debian/jenkins-ci.org.key
       state: present
 
   - name: jeknins repository to system
+    become: yes
     apt_repository:
       repo: http://pkg.jenkins.io/debian-stable binary/
       state: present
 
   - name: installing jenkins
+    become: yes
     apt:
       name: jenkins
       state: present
       update_cache: yes
 
   - name: adding jenkins to startup
+    become: yes
     service:
       name: jenkins
       state: started
