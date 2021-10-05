@@ -4,18 +4,18 @@
   become: yes
   
   tasks:
-  - name: install python 2
-    become: yes
-    raw: sudo test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python2-minimal)
+#  - name: install python 2
+#    become: yes
+#    raw: sudo test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python2-minimal)
 
   - name: install curl and git
-    become: yes
+#    become: yes
     apt:
       pkg:
-      - default-jre
+#      - default-jre
       - vim
-      - git
-      - curl
+#      - git
+#      - curl
       state: present
 
   - name: adding jenkins gpg key
