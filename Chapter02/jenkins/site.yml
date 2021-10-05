@@ -24,13 +24,14 @@
       url: https://pkg.jenkins.io/debian/jenkins-ci.org.key
       state: present
 
+#  - name: jeknins repository to system
+#    become: yes
+#    apt_repository:
+#      repo: 'http://pkg.jenkins.io/debian-stable binary/'
+#      state: present
   - name: jeknins repository to system
     become: yes
-    apt_repository:
-      repo: 'http://pkg.jenkins.io/debian-stable binary/'
-      state: present
-
-#sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+    raw: sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 
   - name: installing jenkins
     become: yes
