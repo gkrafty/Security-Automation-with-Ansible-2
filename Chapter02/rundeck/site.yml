@@ -24,11 +24,11 @@
   
   - name: add packages to source.list
     become: yes
-    raw: sudo sh -c 'echo deb https://packages.rundeck.com/pagerduty/rundeck/any/ any main > /etc/apt/sources.list.d/rundeck.list'
+    raw: sudo sh -c 'echo deb https://packages.rundeck.com/pagerduty/rundeck/any/ any main >> /etc/apt/sources.list.d/rundeck.list'
 
   - name: add more packages to source.list
     become: yes
-    raw: sudo sh -c 'echo deb-src https://packages.rundeck.com/pagerduty/rundeck/any/ any main > /etc/apt/sources.list.d/rundeck.list'
+    raw: sudo sh -c 'echo deb-src https://packages.rundeck.com/pagerduty/rundeck/any/ any main >> /etc/apt/sources.list.d/rundeck.list'
   
   - name: apt update to pull in rundeck package
     become: yes
