@@ -8,7 +8,7 @@
     become: yes
     raw: sudo test -e /usr/bin/python || (sudo apt -y update && sudo apt install -y python2-minimal)
 
-  - name: install curl and git
+  - name: install default-jre vim git curl
     become: yes
     apt:
       pkg:
