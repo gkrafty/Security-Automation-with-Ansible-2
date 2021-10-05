@@ -10,8 +10,12 @@
 
   - name: install curl and git
     become: yes
-    apt: 
-      pkg: ['default-jre','vim','git','curl']
+    apt:
+      pkg:
+      - default-jre
+      - vim
+      - git
+      - curl
       state: present
 
   - name: adding jenkins gpg key
